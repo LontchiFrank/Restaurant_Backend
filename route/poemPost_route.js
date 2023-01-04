@@ -4,7 +4,7 @@ const Poem = require("../model/poemPost_model");
 //get all the poems
 router.get("/", async (req, res) => {
   try {
-    const post = await Poemfind();
+    const post = await Poem.find();
     res.status(200).json(post);
   } catch (error) {
     res.status(500).json(error);
@@ -32,6 +32,18 @@ router.put("/:id", async (req, res) => {
       { new: true }
     );
     res.status(200).json(updatePoem);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//Delete the poem
+router.delete("/:id", async (req, res) => {
+  try {
+    const deletePost = await Post.findByIdAndDelete(req.params.id);
+    res
+      .status(200)
+      .json({ message: "Post has been deleted successfully", deletePost });
   } catch (error) {
     res.status(500).json(error);
   }

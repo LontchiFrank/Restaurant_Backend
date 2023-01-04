@@ -16,7 +16,7 @@ mongoose
 
 //middleware
 app.use(express.json());
-app.use("/api/post", poemRoute);
+app.use("/api/poem", poemRoute);
 
 const PORT = process.env.PORT || 4000;
 

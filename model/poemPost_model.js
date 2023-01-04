@@ -6,7 +6,7 @@ const poemSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    description: {
+    desc: {
       type: String,
       required: true,
     },
@@ -16,4 +16,4 @@ const poemSchema = new mongoose.Schema(
   }
 );
 
-module.experts = mongoose.model("Poem", poemSchema);
+module.exports = mongoose.model("Poem", poemSchema);
