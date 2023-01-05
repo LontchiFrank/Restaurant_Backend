@@ -23,17 +23,18 @@ router.get("/", async (req, res) => {
 
 router.post("/new-poem", async (req, res) => {
   //   const newPoem = new Poem(req.body);
+  console.log(req);
   const file = req.files.photo;
-  cloudinary.uploader.upload(file.tempFilePath, (err, result) => {
+  cloudinary.uploader.upload(file, (err, result) => {
     console.log(result);
-    const newPoem = new Post({
+    const newPoem = new Poem({
       ...req.body,
       image: result.url,
     });
     try {
       console.log(req);
-      //   const savePoem = newPoem.save();
-      //   res.status(200).json(savePoem);
+      const savePoem = newPoem.save();
+      res.status(200).json(savePoem);
     } catch (error) {
       res.status(500).json(error);
     }
