@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const fileUpload = require("express-fileupload");
 const poemRoute = require("./route/poemPost_route");
 const app = express();
 
@@ -16,6 +17,11 @@ mongoose
 
 //middleware
 app.use(express.json());
+app.use(
+  fileUpload({
+    useTempFiles: true,
+  })
+);
 app.use("/api/poem", poemRoute);
 
 const PORT = process.env.PORT || 4000;
