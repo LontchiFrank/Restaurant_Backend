@@ -1,5 +1,13 @@
 const router = require("express").Router();
 const Poem = require("../model/poemPost_model");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: "drillayqx",
+  api_key: "843213215477195",
+  api_secret: "k8uPFILp9oWzyNXSomqccUf8uzs",
+  secure: true,
+});
 
 //get all the poems
 router.get("/", async (req, res) => {
@@ -14,13 +22,22 @@ router.get("/", async (req, res) => {
 // create new poem
 
 router.post("/new-poem", async (req, res) => {
-  const newPoem = new Poem(req.body);
-  try {
-    const savePoem = await newPoem.save();
-    res.status(200).json(savePoem);
-  } catch (error) {
-    res.status(500).json(error);
-  }
+  //   const newPoem = new Poem(req.body);
+  const file = req.files.photo;
+  cloudinary.uploader.upload(file.tempFilePath, (err, result) => {
+    console.log(result);
+    const newPoem = new Post({
+      ...req.body,
+      image: result.url,
+    });
+    try {
+      console.log(req);
+      //   const savePoem = newPoem.save();
+      //   res.status(200).json(savePoem);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  });
 });
 
 //update the poem

@@ -6,6 +6,13 @@ const poemSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    category: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+    },
     desc: {
       type: String,
       required: true,
