@@ -26,8 +26,8 @@ router.post("/new-poem", async (req, res) => {
   const { title, category, desc } = req.body;
   console.log(req.body);
   const file = req.files.photo;
-  cloudinary.uploader.upload(file, (err, result) => {
-    console.log(result);
+  cloudinary.uploader.upload(file.tempFilePath, (err, result) => {
+    console.log(file);
     const newPoem = new Poem({
       ...req.body,
       image: result.url,
