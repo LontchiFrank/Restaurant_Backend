@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(
   fileUpload({
     useTempFiles: true,
+    limits: { fileSize: 50 * 2024 * 1024 },
   })
 );
 app.use("/api/poem", poemRoute);
