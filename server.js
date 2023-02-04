@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
 const poemRoute = require("./route/poemPost_route");
+var cors = require("cors");
 const app = express();
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -23,6 +24,7 @@ app.use(
     limits: { fileSize: 50 * 2024 * 1024 },
   })
 );
+app.use(cors());
 app.use("/api/poem", poemRoute);
 
 const PORT = process.env.PORT || 4000;
