@@ -5,7 +5,10 @@ const fileUpload = require("express-fileupload");
 const poemRoute = require("./route/poemPost_route");
 const authRoute = require("./route/authRoute");
 var cors = require("cors");
+const dotenv = require("dotenv");
 const app = express();
+
+dotenv.config();
 
 const MONGODB_URI = process.env.MONGODB_URI;
 mongoose
