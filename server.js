@@ -30,7 +30,7 @@ app.use(
 );
 app.use(cors());
 app.use("/api/poem", poemRoute);
-app.use("/api/user/", authRoute);
+app.use("/api/user", authRoute);
 
 const PORT = process.env.PORT || 4000;
 
