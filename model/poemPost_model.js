@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const poemSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
     title: {
       type: String,
       required: true,
@@ -9,6 +13,7 @@ const poemSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
+      enum: ["romance", "fantasy", "comedy", "story", "horror"],
     },
 
     desc: {
@@ -18,7 +23,12 @@ const poemSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    date: {
+      type: Date,
+      default: Date.now,
+    },
   },
+
   {
     timestamps: true,
   }
