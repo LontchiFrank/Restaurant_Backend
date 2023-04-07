@@ -22,14 +22,15 @@ router.get("/", async (req, res) => {
 // create new poem
 
 router.post("/new-poem", async (req, res) => {
+  console.log(req.files, "files");
   //   const newPoem = new Poem(req.body);
   const { title, desc, category } = req.body;
   console.log(req.body);
   const file = req.files.image;
+  console.log(file);
 
   cloudinary.uploader.upload(file.tempFilePath, (err, result) => {
     console.log(result);
-    console.log(file);
     const newPoem = new Poem({
       ...req.body,
       image: result.url,

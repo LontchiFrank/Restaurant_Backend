@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
 const poemRoute = require("./route/poemPost_route");
 const authRoute = require("./route/authRoute");
+const bodyParser = require("body-parser");
 var cors = require("cors");
 const dotenv = require("dotenv");
 const app = express();
@@ -28,6 +29,7 @@ app.use(
     limits: { fileSize: 50 * 2024 * 1024 },
   })
 );
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/api/poem", poemRoute);
 app.use("/api/user", authRoute);

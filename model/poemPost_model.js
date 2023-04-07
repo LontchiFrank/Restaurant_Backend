@@ -3,7 +3,7 @@ const poemSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "User",
     },
     title: {
       type: String,
@@ -13,7 +13,7 @@ const poemSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ["romance", "fantasy", "comedy", "story", "horror"],
+      enum: ["Romance", "Fantasy", "Comedy", "Story", "Horror"],
     },
 
     desc: {
