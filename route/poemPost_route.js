@@ -43,8 +43,19 @@ router.post("/new-poem", verifyToken, async (req, res) => {
   });
 });
 
+//get poems as per user:PRIVATE
+router.get("/userpoem", verifyToken, async (req, res) => {
+  try {
+    let poem = await Poem.find({ user: req.user._id }).sort({ date: -1 });
+    res.json(poem);
+  } catch (error) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 //update the poem
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
   try {
     const updatePoem = await Poem.findByIdAndUpdate(
       req.params.id,
@@ -58,12 +69,14 @@ router.put("/:id", async (req, res) => {
 });
 
 //Delete the poem
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
   try {
-    const deletePost = await Post.findByIdAndDelete(req.params.id);
+    console.log(req.params.id);
+    const deletePost = await Poem.findByIdAndDelete(req.params.id);
+    console.log(deletePost, "kjjk");
     res
       .status(200)
-      .json({ message: "Post has been deleted successfully", deletePost });
+      .json({ message: "Poem has been deleted successfully", deletePost });
   } catch (error) {
     res.status(500).json(error);
   }
