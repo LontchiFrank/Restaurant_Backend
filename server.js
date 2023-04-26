@@ -34,7 +34,7 @@ app.use(cors());
 app.use("/api/poem", poemRoute);
 app.use("/api/user", authRoute);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
