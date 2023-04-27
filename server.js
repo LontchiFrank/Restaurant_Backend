@@ -31,6 +31,9 @@ app.use(
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use((req, res) => {
+  res.send("Hello Guys");
+});
 app.use("/api/poem", poemRoute);
 app.use("/api/user", authRoute);
 
