@@ -6,40 +6,39 @@ const { registerValidation, loginValidation } = require("../validation");
 
 // router.get("/signup", () => {});
 router.post("/signup", async (req, res) => {
+  console.log("entered");
   //LETS VALIDATE THE DATA BEFORE WE A USER
-
-  const { error } = registerValidation(req.body);
-  if (error) {
-    res.status(400).send(error.details[0].message);
-  }
-
-  //Checking if the user is already in the database
-  const emailExist = await Users.findOne({ email: req.body.email });
-  if (emailExist) {
-    return res.status(400).send("Email already exists");
-  }
-
-  //Hash the password
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
-  //   const { name, email, password } = req.body;
-  const user = new User({
-    first_name: req.body.firstname,
-    last_name: req.body.lastname,
-    email: req.body.email,
-    password: hashedPassword,
-  });
-
   try {
+    const { error } = registerValidation(req.body);
+    if (error) {
+      res.status(400).send(error.details[0].message);
+    }
+
+    //Checking if the user is already in the database
+    const emailExist = await Users.findOne({ email: req.body.email });
+    if (emailExist) {
+      return res.status(400).send("Email already exists");
+    }
+
+    //Hash the password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    //   const { name, email, password } = req.body;
+    const user = new Users({
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      password: hashedPassword,
+    });
     const savedUser = await user.save();
     res.status(200).json(savedUser);
+    console.log(user, "jskljkl");
+    res.send("new signup");
   } catch (err) {
-    console.log(err);
+    console.log(err, "error here");
     res.status(400).send("error, user not created");
   }
-
-  res.send("new signup");
 });
 // router.get("/login", () => {});
 

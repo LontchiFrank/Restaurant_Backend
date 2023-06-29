@@ -34,9 +34,9 @@ app.use(cors());
 
 app.use("/api/poem", poemRoute);
 app.use("/api/user", authRoute);
-app.use((req, res) => {
-  res.send("Hello Guys");
-});
+// app.use((req, res) => {
+//   res.send("Hello Guys");
+// });
 const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, () => {
