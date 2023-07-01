@@ -40,7 +40,7 @@ router.post("/signup", async (req, res) => {
     res.status(400).send("error, user not created");
   }
 });
-// router.get("/login", () => {});
+// router.get("/lo`gin", () => {});
 
 //LOGIN
 
