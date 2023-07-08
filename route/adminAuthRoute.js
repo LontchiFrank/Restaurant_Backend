@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const { registerValidation, loginValidation } = require("../adminValidation");
 
 // router.get("/signup", () => {});
-router.post("/signup", async (req, res) => {
+router.post("/signup-admin", async (req, res) => {
   console.log("entered");
   //LETS VALIDATE THE DATA BEFORE WE A USER
   try {
@@ -25,14 +25,14 @@ router.post("/signup", async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
     //   const { name, email, password } = req.body;
-    const user = new Admin({
-      restaurant_name: req.body.first_name,
+    const admin = new Admin({
+      restaurant_name: req.body.restaurant_name,
       email: req.body.email,
       password: hashedPassword,
     });
-    const savedUser = await user.save();
+    const savedUser = await admin.save();
     res.status(200).json(savedUser);
-    console.log(user, "jskljkl");
+    console.log(admin, "jskljkl");
     res.send("new signup");
   } catch (err) {
     console.log(err, "error here");
@@ -43,7 +43,7 @@ router.post("/signup", async (req, res) => {
 
 //LOGIN
 
-router.post("/login", async (req, res) => {
+router.post("/login-admin", async (req, res) => {
   const { error } = loginValidation(req.body);
   if (error) {
     res.status(400).send(error.details[0].message);

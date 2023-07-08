@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
 const poemRoute = require("./route/poemPost_route");
 const authRoute = require("./route/authRoute");
+const adminAuthRoute = require("./route/adminAuthRoute");
 const bodyParser = require("body-parser");
 var cors = require("cors");
 const dotenv = require("dotenv");
@@ -34,6 +35,7 @@ app.use(cors());
 
 app.use("/api/poem", poemRoute);
 app.use("/api/user", authRoute);
+app.use("/api/admin", adminAuthRoute);
 // app.use((req, res) => {
 //   res.send("Hello Guys");
 // });
