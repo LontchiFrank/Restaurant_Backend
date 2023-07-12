@@ -43,7 +43,7 @@ router.post("/signup-admin", async (req, res) => {
 
 //LOGIN
 
-router.post("/login-admin", async (req, res) => {
+router.post("/signin-admin", async (req, res) => {
   const { error } = loginValidation(req.body);
   if (error) {
     res.status(400).send(error.details[0].message);
@@ -63,7 +63,7 @@ router.post("/login-admin", async (req, res) => {
 
   //Create and assign a token
   const token = jwt.sign({ _id: admin._id }, process.env.TOKEN_SECRET);
-  res.header("auth-token", token).json({ token, user });
+  res.header("auth-token", token).json({ token, admin });
 });
 
 module.exports = router;
