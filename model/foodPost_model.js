@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
-const poemSchema = new mongoose.Schema(
+const foodSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    title: {
+    food_name: {
       type: String,
       required: true,
       unique: true,
@@ -17,6 +17,10 @@ const poemSchema = new mongoose.Schema(
     },
 
     desc: {
+      type: String,
+      required: true,
+    },
+    location: {
       type: String,
       required: true,
     },
@@ -34,4 +38,4 @@ const poemSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Poem", poemSchema);
+module.exports = mongoose.model("Food", foodSchema);

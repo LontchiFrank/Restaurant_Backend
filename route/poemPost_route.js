@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Poem = require("../model/poemPost_model");
+const Food = require("../model/foodPost_model");
 const verifyToken = require("./verifyToken");
 const cloudinary = require("cloudinary").v2;
 
@@ -14,29 +14,29 @@ cloudinary.config({
 router.get("/", async (req, res) => {
   // const post = await Poem.findOne({user:req.user.id});
   try {
-    const post = await Poem.find();
-    res.status(200).json(post);
+    const food = await Food.find();
+    res.status(200).json(food);
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
-// create new poem
+// create new food item
 
-router.post("/new-poem", verifyToken, async (req, res) => {
-  //   const newPoem = new Poem(req.body);
-  const { title, desc, category } = req.body;
+router.post("/new-food", verifyToken, async (req, res) => {
+  //   const newPoem = new Poems(req.body);
+  const { food_name, location, desc, category } = req.body;
   const file = req.files.image;
   cloudinary.uploader.upload(file.tempFilePath, (err, result) => {
-    const newPoem = new Poem({
+    const newFood = new Food({
       ...req.body,
       image: result.url,
       user: req.user._id,
     });
     try {
-      console.log(newPoem);
-      const savePoem = newPoem.save();
-      res.status(200).json(savePoem);
+      console.log(newFood);
+      const saveFood = newFood.save();
+      res.status(200).json(saveFood);
     } catch (error) {
       res.status(500).json(error);
     }
@@ -44,10 +44,10 @@ router.post("/new-poem", verifyToken, async (req, res) => {
 });
 
 //get poems as per user:PRIVATE
-router.get("/userpoem", verifyToken, async (req, res) => {
+router.get("/userfood", verifyToken, async (req, res) => {
   try {
-    let poem = await Poem.find({ user: req.user._id }).sort({ date: -1 });
-    res.json(poem);
+    let food = await Food.find({ user: req.user._id }).sort({ date: -1 });
+    res.json(food);
   } catch (error) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -57,12 +57,12 @@ router.get("/userpoem", verifyToken, async (req, res) => {
 //update the poem
 router.put("/:id", verifyToken, async (req, res) => {
   try {
-    const updatePoem = await Poem.findByIdAndUpdate(
+    const updateFood = await Food.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
       { new: true }
     );
-    res.status(200).json(updatePoem);
+    res.status(200).json(updateFood);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -72,11 +72,11 @@ router.put("/:id", verifyToken, async (req, res) => {
 router.delete("/:id", verifyToken, async (req, res) => {
   try {
     console.log(req.params.id);
-    const deletePost = await Poem.findByIdAndDelete(req.params.id);
-    console.log(deletePost, "kjjk");
+    const deleteFood = await Food.findByIdAndDelete(req.params.id);
+    console.log(deleteFood, "kjjk");
     res
       .status(200)
-      .json({ message: "Poem has been deleted successfully", deletePost });
+      .json({ message: "Poem has been deleted successfully", deleteFood });
   } catch (error) {
     res.status(500).json(error);
   }
