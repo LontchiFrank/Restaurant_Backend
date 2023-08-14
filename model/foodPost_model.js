@@ -5,7 +5,7 @@ const foodSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    food_name: {
+    name: {
       type: String,
       required: true,
       unique: true,
@@ -19,8 +19,8 @@ const foodSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    location: {
-      type: String,
+    price: {
+      type: Number,
       required: true,
     },
     image: {
