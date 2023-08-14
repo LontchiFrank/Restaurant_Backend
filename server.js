@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
-const poemRoute = require("./route/poemPost_route");
+const foodRoute = require("./route/foodPost_route");
 const authRoute = require("./route/authRoute");
 const adminAuthRoute = require("./route/adminAuthRoute");
 const bodyParser = require("body-parser");
@@ -33,7 +33,7 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use("/api/poem", poemRoute);
+app.use("/api/food", foodRoute);
 app.use("/api/user", authRoute);
 app.use("/api/admin", adminAuthRoute);
 // app.use((req, res) => {

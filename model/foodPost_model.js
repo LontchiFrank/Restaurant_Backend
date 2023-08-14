@@ -13,7 +13,6 @@ const foodSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ["Romance", "Fantasy", "Comedy", "Story", "Horror"],
     },
 
     desc: {
