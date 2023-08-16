@@ -24,7 +24,6 @@ router.get("/", async (req, res) => {
 // create new food item
 
 router.post("/new-food", verifyToken, async (req, res) => {
-  //   const newPoem = new Poems(req.body);
   const { name, desc, price, category } = req.body;
   const file = req.files.image;
   cloudinary.uploader.upload(file.tempFilePath, (err, result) => {
