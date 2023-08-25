@@ -48,8 +48,7 @@ router.get("/userfood", verifyToken, async (req, res) => {
     let food = await Food.find({ user: req.user._id }).sort({ date: -1 });
     res.json(food);
   } catch (error) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
+    res.status(500).send("Server Error", error);
   }
 });
 
@@ -66,7 +65,6 @@ router.put("/:id", verifyToken, async (req, res) => {
     res.status(500).json(error);
   }
 });
-
 //Delete the poem
 router.delete("/:id", verifyToken, async (req, res) => {
   try {
