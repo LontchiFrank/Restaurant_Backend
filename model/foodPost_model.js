@@ -13,6 +13,7 @@ const foodSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
+      enum: ["Meal", "Grill", "Cream", "Fries", "Drinks"],
     },
 
     desc: {
