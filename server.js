@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
 const foodRoute = require("./route/foodPost_route");
 const authRoute = require("./route/authRoute");
+const categoryRoute = require("./route/Category_route");
 const adminAuthRoute = require("./route/adminAuthRoute");
 const bodyParser = require("body-parser");
 var cors = require("cors");
@@ -36,6 +37,7 @@ app.use(cors());
 app.use("/api/food", foodRoute);
 app.use("/api/user", authRoute);
 app.use("/api/admin", adminAuthRoute);
+app.use("/api/category", categoryRoute);
 // app.use((req, res) => {
 //   res.send("Hello Guys");
 // });

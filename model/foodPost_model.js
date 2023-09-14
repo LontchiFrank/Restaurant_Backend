@@ -11,9 +11,8 @@ const foodSchema = new mongoose.Schema(
       unique: true,
     },
     category: {
-      type: String,
-      required: true,
-      enum: ["Meal", "Grill", "Cream", "Fries", "Drinks"],
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
     },
 
     desc: {

@@ -10,7 +10,7 @@ cloudinary.config({
   secure: true,
 });
 
-//get all the poems
+//get all the food
 router.get("/", async (req, res) => {
   // const post = await Poem.findOne({user:req.user.id});
   try {
@@ -20,6 +20,19 @@ router.get("/", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+//get all categories
+
+// router.get("/categories", async (req, res) => {
+//   try {
+//     const foodCategories = await Food.find({});
+//     foodCategories.
+//     res.status(200).json(foodCategories);
+//   } catch (error) {
+//     res.status(500).json(error);
+//     console.log(error);
+//   }
+// });
 
 // create new food item
 
@@ -38,6 +51,7 @@ router.post("/new-food", verifyToken, async (req, res) => {
       res.status(200).json(saveFood);
     } catch (error) {
       res.status(500).json(error);
+      console.log(error);
     }
   });
 });
