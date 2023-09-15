@@ -3,7 +3,7 @@ const Category = require("../model/Category_model");
 const verifyToken = require("./verifyToken");
 
 //get all the categories
-router.get("/categories", async (req, res) => {
+router.get("/", async (req, res) => {
   // const post = await Poem.findOne({user:req.user.id});
   try {
     const categories = await Category.find();

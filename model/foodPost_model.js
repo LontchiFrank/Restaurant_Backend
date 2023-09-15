@@ -11,7 +11,7 @@ const foodSchema = new mongoose.Schema(
       unique: true,
     },
     category: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.String,
       ref: "Category",
     },
 
