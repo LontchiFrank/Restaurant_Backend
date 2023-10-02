@@ -6,6 +6,7 @@ const foodRoute = require("./route/foodPost_route");
 const authRoute = require("./route/authRoute");
 const categoryRoute = require("./route/Category_route");
 const adminAuthRoute = require("./route/adminAuthRoute");
+const addCartRoute = require('./route/AddCartRoute')
 const bodyParser = require("body-parser");
 var cors = require("cors");
 const dotenv = require("dotenv");
@@ -38,6 +39,7 @@ app.use("/api/food", foodRoute);
 app.use("/api/user", authRoute);
 app.use("/api/admin", adminAuthRoute);
 app.use("/api/category", categoryRoute);
+app.use("/api/addCart", addCartRoute)
 // app.use((req, res) => {
 //   res.send("Hello Guys");
 // });

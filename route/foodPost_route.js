@@ -21,19 +21,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-//get all categories
-
-// router.get("/categories", async (req, res) => {
-//   try {
-//     const foodCategories = await Food.find({});
-//     foodCategories.
-//     res.status(200).json(foodCategories);
-//   } catch (error) {
-//     res.status(500).json(error);
-//     console.log(error);
-//   }
-// });
-
 // create new food item
 
 router.post("/new-food", verifyToken, async (req, res) => {
